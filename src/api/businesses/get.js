@@ -3,21 +3,31 @@ const db = require('../../db');
 const get = {
 
     status: async function(req, res) {
-        const results = await db.query('SELECT * FROM businesses');
-        res.status(200).send(results);
+        res.status(200).send('Hello world!');
     },
-    hello: async function(req, res) {
-        res.status(200).send('hello world');
+
+    businesses: async function(req, res) {
+        try{
+            const results = await db.query('SELECT * FROM businesses');
+            res.status(200).send(results); 
+        } catch{
+            res.status(500).send('Internal server error');    
+        }
     },
     
-      
-
-    Cities: async function(req, res) {
-        const results = await db.query('SELECT DISTINCT City FROM businesses');
-        res.status(200).send(results);
+    business: async function(req, res) {
+        const id = req.params.id;
+        if(isNaN(id)){
+            res.status(400).send({body: 'ID must be an int.'})
+            return;
+        }
+        try{
+            const results = await db.query(`SELECT * FROM businesses WHERE id==${id}`);
+            res.status(200).send(results);    
+        } catch{
+            res.status(500).send('Internal server error');    
+        }
     },
-
-
 
 };
 
