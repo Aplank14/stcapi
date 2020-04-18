@@ -15,7 +15,7 @@ const get = {
         const id = req.params.id;
         // ARG Checking
         try{
-            const results = await db.query(`SELECT * FROM businesses WHERE City==${id}`);
+            const results = await db.query(`SELECT * FROM businesses WHERE City=${id}`);
             res.status(200).send(results);    
         } catch{
             res.status(500).send('Internal server error');    

@@ -22,9 +22,10 @@ const get = {
             return;
         }
         try{
-            const results = await db.query(`SELECT * FROM businesses WHERE id==${id}`);
+            const results = await db.query(`SELECT * FROM businesses WHERE idBusinesses=${id}`);
             res.status(200).send(results);    
-        } catch{
+        } catch(err){
+            console.log(err)
             res.status(500).send('Internal server error');    
         }
     },
