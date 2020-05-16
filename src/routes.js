@@ -12,10 +12,9 @@ const api = require('./api');
 
 // Routes
 router.get('/status', api.status); // Route for getting the status
-router.get('/business', api.businesses); //says hello world
-router.get('/business/:id', api.business); //says hello world
-router.get('/city', api.cities); //Cities
-router.get('/cityCount', api.citiesCount); //Cities
-router.get('/city/:id', api.city); //Cities
+router.get('/business', api.businesses); //Get all businesses
+router.get('/business/:id', api.business); //Get a specific business
+router.get('/state/:id', api.cities); //Cities within a state
+router.get('/city/:id', api.city); //Get a specific city
 
 module.exports = router;
