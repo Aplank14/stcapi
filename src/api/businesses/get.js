@@ -8,7 +8,7 @@ const get = {
 
     businesses: async function(req, res) {
         try{
-            const results = await db.query('SELECT * FROM businesses');
+            const results = await db.query('SELECT * FROM businesses WHERE OnOff=1');
             res.status(200).send(results); 
         } catch{
             res.status(500).send('Internal server error');    
@@ -22,7 +22,7 @@ const get = {
             return;
         }
         try{
-            const results = await db.query(`SELECT * FROM businesses WHERE idBusinesses=${id}`);
+            const results = await db.query(`SELECT * FROM businesses WHERE idBusinesses=${id} AND OnOff=1`);
             res.status(200).send(results);    
         } catch(err){
             console.log(err)
