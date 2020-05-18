@@ -8,10 +8,11 @@ const get = {
             res.status(400).send('Bad request')
         }
         try{
-            const results = await db.query(`SELECT City, COUNT(City) AS Count FROM businesses WHERE OnOff=1 AND State=${id} GROUP BY City`);
+            const results = await db.query(`SELECT City, COUNT(City) AS Count FROM businesses WHERE OnOff=1 AND State='${id}' GROUP BY City`);
             res.status(200).send(results);
-        } catch{
-            res.status(500).send('Internal server error');    
+        } catch(err){
+            res.status(500).send('Internal server error');
+            console.log(err)    
         }
     },
     
